@@ -3,8 +3,10 @@
 import Marquee from "react-fast-marquee";
 import Header from "../../components/shared/Header/Header";
 import Navbar from "../../components/shared/Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Categories from "../../components/Categories/Categories";
+import JournalistCard from "../../components/JournalistCard/JournalistCard";
 // import { FaFacebook, FaGithub } from "react-icons/fa";
 
 function Home() {
@@ -26,7 +28,7 @@ function Home() {
         <Marquee pauseOnHover speed={70}>
           {marqueeLinks.map((marquee) => (
             <Link
-              className="text-lg font-semibold text-[#403F3F] tracking-wide mr-6"
+              className="text-lg font-semibold text-dark-2 tracking-wide mr-6"
               key={marquee.id}
               to={`/${marquee.category}/${marquee.id}`}
             >
@@ -37,8 +39,13 @@ function Home() {
       </div>
       <Navbar />
       <div className="homeBody grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div className="left-sidebar border"></div>
-        <div className="middle col-span-1 md:col-span-2 border"></div>
+        <div className="left-sidebar">
+          <Categories />
+        </div>
+        <div className="middle col-span-1 md:col-span-2 border">
+          <Outlet />
+          <JournalistCard/>
+        </div>
         <div className="right-sidebar border"></div>
       </div>
     </div>

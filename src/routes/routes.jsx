@@ -8,12 +8,16 @@ import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
 import Career from "../pages/Career/Career";
 
+
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      { path: "/", element: <Home /> },
+      {
+        path: "/",
+        element: <Home />,
+      },
       { path: "/about", element: <About /> },
       { path: "/career", element: <Career /> },
       { path: "/register", element: <Register /> },

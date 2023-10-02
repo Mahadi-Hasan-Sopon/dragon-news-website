@@ -3,7 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        "dark-2": "#403f3f",
+      },
       fontFamily: {
         OET: ["OldEnglishTextMT", "sans-serif"],
       },
