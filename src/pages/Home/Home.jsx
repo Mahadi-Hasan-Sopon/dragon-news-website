@@ -4,7 +4,7 @@ import Navbar from "../../components/shared/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Categories from "../../components/Categories/Categories";
-import NewsDetails from "../../components/NewsDetails/NewsDetails";
+import NewsCard from "../../components/NewsDetails/NewsCard";
 
 // import { FaFacebook, FaGithub } from "react-icons/fa";
 
@@ -85,7 +85,7 @@ function Home() {
             Dragon News Home
           </h2>
           {filteredNews?.map((newsItem) => (
-            <NewsDetails key={newsItem._id} newsItem={newsItem} />
+            <NewsCard key={newsItem._id} newsItem={newsItem} />
           ))}
         </div>
         <div className="right-sidebar border sticky top-28"> Right Content</div>

@@ -1,8 +1,8 @@
-// import React from 'react'
-
 import { Link, NavLink } from "react-router-dom";
 
 import { RxAvatar } from "react-icons/rx";
+import { useContext } from "react";
+import { AuthContext } from "../../../Contexts/AuthContextProvider";
 
 const navLinks = (
   <>
@@ -52,6 +52,8 @@ const navLinks = (
 );
 
 function Navbar() {
+  const { user, logOutUser } = useContext(AuthContext);
+
   return (
     <div className="py-6">
       <div className="navbar">
@@ -84,12 +86,21 @@ function Navbar() {
         <div className="navbar-end">
           <div className="flex items-center gap-2.5">
             <RxAvatar className="text-5xl" />
-            <Link
-              to={"/login"}
-              className="text-xl py-2 px-10 text-white bg-[#403F3F]"
-            >
-              Login
-            </Link>
+            {user ? (
+              <button
+                onClick={() => logOutUser()}
+                className="text-xl py-2 px-10 text-white bg-[#403F3F]"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <Link
+                to={"/login"}
+                className="text-xl py-2 px-10 text-white bg-[#403F3F]"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>

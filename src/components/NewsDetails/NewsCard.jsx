@@ -4,10 +4,10 @@ import { FaEye, FaStar } from "react-icons/fa";
 import JournalistCard from "../JournalistCard/JournalistCard";
 import { Link } from "react-router-dom";
 
-function NewsDetails({ newsItem }) {
+function NewsCard({ newsItem }) {
   return (
     <div className="mb-8 rounded-lg shadow">
-      <JournalistCard />
+      <JournalistCard author={newsItem.author} />
       <div className="newsCard p-6 space-y-5">
         <h1 className="text-xl font-bold text-dark-2"> {newsItem.title} </h1>
         <img
@@ -15,7 +15,11 @@ function NewsDetails({ newsItem }) {
           src={newsItem.thumbnail_url}
           alt={` thumbnail of ${newsItem.title}`}
         />
-        <DetailsToShow newsItemId={newsItem._id} details={newsItem.details} />
+        <DetailsToShow
+          newsItemCategoryId={newsItem.category_id}
+          newsItemId={newsItem._id}
+          details={newsItem.details}
+        />
 
         <div className="view-rating flex justify-between items-center">
           <Rating rating={newsItem.rating} />
@@ -50,14 +54,14 @@ const Rating = ({ rating }) => {
   );
 };
 
-const DetailsToShow = ({ details, newsItemId }) => {
+const DetailsToShow = ({ details, newsItemId, newsItemCategoryId }) => {
   if (details.length > 200) {
     return (
       <div>
         <p className="text-base font-normal text-[#706F6F]">
           {details.slice(0, 200)}...
         </p>
-        <Link to={`${newsItemId}`}>
+        <Link to={`/news/${newsItemCategoryId}/${newsItemId}`}>
           <button
             type="button"
             className="bg-gradient-to-r from-[#FF8C47] to-[#F75B5F] text-transparent bg-clip-text text-base font-semibold hover:px-6 py-2 border border-transparent hover:border-[#FF8C47] hover:rounded-full transition-all duration-500"
@@ -70,7 +74,7 @@ const DetailsToShow = ({ details, newsItemId }) => {
   }
 };
 
-NewsDetails.propTypes = {
+NewsCard.propTypes = {
   newsItem: PropTypes.object.isRequired,
 };
 
@@ -81,5 +85,6 @@ Rating.propTypes = {
 DetailsToShow.propTypes = {
   details: PropTypes.string,
   newsItemId: PropTypes.string,
+  newsItemCategoryId: PropTypes.string,
 };
-export default NewsDetails;
+export default NewsCard;
