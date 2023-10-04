@@ -17,7 +17,10 @@ const Register = () => {
     console.log(name, photo, email, password);
 
     createUser(email, password)
-      .then(() => console.log("User created successfully"))
+      .then(() => {
+        handleErrors("");
+        console.log("User created successfully");
+      })
       .catch((error) => {
         console.error(error);
         handleErrors(error.message);

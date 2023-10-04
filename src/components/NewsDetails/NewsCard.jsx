@@ -4,7 +4,7 @@ import { FaEye, FaStar } from "react-icons/fa";
 import JournalistCard from "../JournalistCard/JournalistCard";
 import { Link } from "react-router-dom";
 
-function NewsCard({ newsItem }) {
+function NewsCard({ newsItem, categories }) {
   return (
     <div className="mb-8 rounded-lg shadow">
       <JournalistCard author={newsItem.author} />
@@ -15,11 +15,7 @@ function NewsCard({ newsItem }) {
           src={newsItem.thumbnail_url}
           alt={` thumbnail of ${newsItem.title}`}
         />
-        <DetailsToShow
-          newsItemCategoryId={newsItem.category_id}
-          newsItemId={newsItem._id}
-          details={newsItem.details}
-        />
+        <DetailsToShow newsItem={newsItem} categories={categories} />
 
         <div className="view-rating flex justify-between items-center">
           <Rating rating={newsItem.rating} />
@@ -54,14 +50,18 @@ const Rating = ({ rating }) => {
   );
 };
 
-const DetailsToShow = ({ details, newsItemId, newsItemCategoryId }) => {
-  if (details.length > 200) {
+const DetailsToShow = ({ newsItem, categories }) => {
+  const categoryName = categories[newsItem.category_id].name
+    .split(" ")
+    .join("-");
+
+  if (newsItem.details.length > 200) {
     return (
       <div>
         <p className="text-base font-normal text-[#706F6F]">
-          {details.slice(0, 200)}...
+          {newsItem.details.slice(0, 200)}...
         </p>
-        <Link to={`/news/${newsItemCategoryId}/${newsItemId}`}>
+        <Link to={`/news/${categoryName}/${newsItem._id}`}>
           <button
             type="button"
             className="bg-gradient-to-r from-[#FF8C47] to-[#F75B5F] text-transparent bg-clip-text text-base font-semibold hover:px-6 py-2 border border-transparent hover:border-[#FF8C47] hover:rounded-full transition-all duration-500"
@@ -76,6 +76,7 @@ const DetailsToShow = ({ details, newsItemId, newsItemCategoryId }) => {
 
 NewsCard.propTypes = {
   newsItem: PropTypes.object.isRequired,
+  categories: PropTypes.array,
 };
 
 Rating.propTypes = {
@@ -83,8 +84,7 @@ Rating.propTypes = {
 };
 
 DetailsToShow.propTypes = {
-  details: PropTypes.string,
-  newsItemId: PropTypes.string,
-  newsItemCategoryId: PropTypes.string,
+  newsItem: PropTypes.object.isRequired,
+  categories: PropTypes.array,
 };
 export default NewsCard;

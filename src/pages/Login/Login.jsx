@@ -7,7 +7,7 @@ function Login() {
   const { loginUser, errors, handleErrors } = useContext(AuthContext);
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   const navigate = useNavigate();
 
@@ -20,6 +20,7 @@ function Login() {
     loginUser(email, password)
       .then((userCredential) => {
         console.log("User login successful", userCredential.user);
+        handleErrors("");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => handleErrors(error.message));
