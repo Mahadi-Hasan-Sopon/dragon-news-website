@@ -3,16 +3,30 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthContextProvider";
 
 function LoginOptions() {
-  const { logInWithGoogle } = useContext(AuthContext);
+  const { logInWithGoogle, logInWithGithub, handleErrors, errors } =
+    useContext(AuthContext);
+
   const handleSignInWithGoogle = () => {
-    console.log("button clicked");
     logInWithGoogle()
       .then((result) => console.log(result.user))
       .catch((error) => console.log(error));
   };
 
+  const handleSignInWithGithub = () => {
+    logInWithGithub()
+      .then((result) => {
+        console.log(result.user);
+        handleErrors("");
+      })
+      .catch((error) => {
+        console.error(error);
+        handleErrors(error);
+      });
+  };
+
   return (
     <div className="p-3">
+      {errors && <p className="text-red-500 font-bold text-lg"> {errors} </p>}
       <h2 className="text-xl font-semibold text-dark-2">Login With</h2>
       <button
         onClick={handleSignInWithGoogle}
@@ -21,7 +35,10 @@ function LoginOptions() {
         <BsGoogle />
         login with Google
       </button>
-      <button className="flex items-center gap-2 justify-center rounded w-full border py-2 text-dark-2 border-black/50">
+      <button
+        onClick={handleSignInWithGithub}
+        className="flex items-center gap-2 justify-center rounded w-full border py-2 text-dark-2 border-black/50"
+      >
         <BsGithub />
         login with Github
       </button>
