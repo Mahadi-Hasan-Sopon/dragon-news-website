@@ -54,6 +54,8 @@ const navLinks = (
 function Navbar() {
   const { user, logOutUser } = useContext(AuthContext);
 
+  console.log(user)
+
   return (
     <div className="py-6">
       <div className="navbar">
@@ -85,7 +87,13 @@ function Navbar() {
         </div>
         <div className="navbar-end">
           <div className="flex items-center gap-2.5">
-            <RxAvatar className="text-5xl" />
+            <div>
+              {user?.photoURL ? (
+                <img className="w-12 h-12 rounded-full" src={user.photoURL} alt="User image" />
+              ) : (
+                <RxAvatar className="text-5xl" />
+              )}
+            </div>
             {user ? (
               <button
                 onClick={() => logOutUser()}

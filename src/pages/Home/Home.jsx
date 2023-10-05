@@ -37,7 +37,6 @@ function Home() {
         const fetchData = await fetch("categories.json");
         const categories = await fetchData.json();
         setCategories(categories);
-        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -52,6 +51,7 @@ function Home() {
         console.error(error);
       }
     };
+
     fetchCategories();
     fetchMarquee();
     fetchNews();
