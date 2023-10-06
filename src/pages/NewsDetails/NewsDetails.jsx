@@ -2,6 +2,9 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import Header from "../../components/shared/Header/Header";
 import { BsArrowLeft, BsCalendarEvent } from "react-icons/bs";
 import Navbar from "../../components/shared/Navbar/Navbar";
+import LoginOptions from "../../components/shared/LoginOptions/LoginOptions";
+import FindUsOn from "../../components/shared/FindUsOn/FindUsOn";
+import QZone from "../../components/shared/QZone/QZone";
 
 function NewsDetails() {
   const { id, category } = useParams();
@@ -76,17 +79,16 @@ function NewsDetails() {
             </div>
           </div>
         </div>
-        <div className="right-sidebar mt-5 border">Right Sidebar</div>
+        <div className="right-sidebar mt-5">
+          <LoginOptions />
+          <FindUsOn />
+          <QZone />
+        </div>
       </div>
     </div>
   );
 }
 
-// function formatDate(inputDate) {
-//   const options = { year: "numeric", month: "short", day: "numeric" };
-//   const date = new Date(inputDate);
-//   return date.toLocaleDateString(undefined, options);
-// }
 function formatDate(inputDate) {
   const date = new Date(inputDate);
   const month = date.toLocaleString("en-US", { month: "short" });
@@ -95,7 +97,5 @@ function formatDate(inputDate) {
 
   return `${month} ${day}, ${year}`;
 }
-
-// NewsDetails.propTypes = {};
 
 export default NewsDetails;
