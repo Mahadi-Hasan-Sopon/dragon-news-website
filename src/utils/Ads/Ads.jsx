@@ -4,7 +4,7 @@ import "./Ads.css";
 function Ads() {
   return (
     <div className="py-16 px-8 ads-div mb-16 mt-4 text-center">
-      <h2 className="text-3xl font-bold text-white">
+      <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
         Create an Amazing Newspaper
       </h2>
       <p className="text-base font-normal text-white mt-5">

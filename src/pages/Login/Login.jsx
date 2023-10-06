@@ -29,10 +29,10 @@ function Login() {
   return (
     <div>
       <Navbar />
-      <div className="w-full md:w-1/2 mx-auto">
-        <div className="my-32">
+      <div className="w-full md:w-2/3 lg:w-1/2 mx-auto">
+        <div className="my-24">
           <div className="flex-col">
-            <div className="mb-6">
+            <div className="mb-10">
               <h1 className="text-5xl font-bold text-center">Login now!</h1>
             </div>
             <div className="flex-shrink-0 w-full shadow-2xl bg-base-100 rounded-xl">
@@ -59,7 +59,7 @@ function Login() {
                       placeholder="password"
                       className="input input-bordered"
                     />
-                    <label className="label">
+                    <label className="label flex flex-wrap gap-4">
                       <Link className="label-text-alt link link-hover">
                         Forgot password?
                       </Link>

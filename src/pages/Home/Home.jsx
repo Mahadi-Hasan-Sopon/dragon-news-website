@@ -91,11 +91,11 @@ function Home() {
           ))}
         </Marquee>
       </div>
-      <div className="Navbar sticky top-0 bg-base-100">
+      <div className="Navbar sticky top-0 bg-base-100 z-50">
         <Navbar />
       </div>
       <div className="homeBody grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 items-start mt-10">
-        <div className="left-sidebar sticky top-28 overflow-y-auto max-h-[90vh] pr-4">
+        <div className="left-sidebar relative md:sticky md:top-28 md:overflow-y-auto md:max-h-[90vh] p-2 z-10">
           <h2 className="text-xl font-semibold text-dark-2">All Category</h2>
           <div className="categories-container flex flex-col gap-7 mt-5 list-none">
             {categories?.map((category) => (
@@ -112,8 +112,15 @@ function Home() {
               <GetRandomNews allNews={allNews} classes={"my-12 space-y-8"} />
             )}
           </div>
+
+          <div className="right-sidebar-in-left hidden md:max-lg:block">
+            <LoginOptions />
+            <FindUsOn />
+            <QZone />
+            <Ads />
+          </div>
         </div>
-        <div className="middle col-span-1 md:col-span-2 ">
+        <div className="middle col-span-1 md:col-span-2 order-last md:order-2">
           <h2 className="text-xl font-semibold text-dark-2 mb-5">
             Dragon News Home
           </h2>
@@ -125,7 +132,7 @@ function Home() {
             />
           ))}
         </div>
-        <div className="right-sidebar sticky top-28 overflow-y-auto max-h-[90vh] pr-4">
+        <div className="right-sidebar relative md:sticky md:top-28 md:overflow-y-auto md:max-h-[90vh] p-2 z-10 md:order-3 md:hidden lg:block">
           <LoginOptions />
           <FindUsOn />
           <QZone />
