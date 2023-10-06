@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
-import { RxAvatar } from "react-icons/rx";
+import AvatarIcon from "../../../assets/Avatar.gif";
 import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthContextProvider";
 
@@ -54,8 +54,6 @@ const navLinks = (
 function Navbar() {
   const { user, logOutUser } = useContext(AuthContext);
 
-  console.log(user)
-
   return (
     <div className="py-6">
       <div className="navbar">
@@ -87,24 +85,39 @@ function Navbar() {
         </div>
         <div className="navbar-end">
           <div className="flex items-center gap-2.5">
-            <div>
+            <div className="tooltip group mr-0.5">
               {user?.photoURL ? (
-                <img className="w-12 h-12 rounded-full" src={user.photoURL} alt="User image" />
+                <img
+                  className="w-12 h-12 rounded-full cursor-pointer"
+                  src={user.photoURL}
+                  alt="User image"
+                />
               ) : (
-                <RxAvatar className="text-5xl" />
+                <>
+                  <img
+                    className="w-14 h-14 rounded-full cursor-pointer border p-0.5"
+                    src={AvatarIcon}
+                    alt="Avatar icon"
+                  />
+                </>
               )}
+
+              <div className="tooltip-text absolute bg-black text-white p-2 rounded-md text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 -top-3/4 left-1/2 transform -translate-x-1/2 group-hover:opacity-50">
+                {user.email}
+              </div>
             </div>
+
             {user ? (
               <button
                 onClick={() => logOutUser()}
-                className="text-xl py-2 px-10 text-white bg-[#403F3F]"
+                className="text-xl py-2 px-10 text-white bg-[#403F3F] rounded"
               >
                 Sign Out
               </button>
             ) : (
               <Link
                 to={"/login"}
-                className="text-xl py-2 px-10 text-white bg-[#403F3F]"
+                className="text-xl py-2 px-10 text-white bg-[#403F3F] rounded"
               >
                 Login
               </Link>
