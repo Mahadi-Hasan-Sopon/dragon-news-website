@@ -12,6 +12,7 @@ import FindUsOn from "../../components/shared/FindUsOn/FindUsOn";
 import QZone from "../../components/shared/QZone/QZone";
 import GetRandomNews from "../../utils/GetRandomNews/GetRandomNews";
 import "./Home.css";
+import Ads from "../../utils/Ads/Ads";
 
 function Home() {
   const { isLoading, setIsLoading } = useContext(AuthContext);
@@ -128,6 +129,7 @@ function Home() {
           <LoginOptions />
           <FindUsOn />
           <QZone />
+          <Ads />
         </div>
       </div>
     </div>

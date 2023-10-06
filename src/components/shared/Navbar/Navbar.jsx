@@ -103,7 +103,7 @@ function Navbar() {
               )}
 
               <div className="tooltip-text absolute bg-black text-white p-2 rounded-md text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 -top-3/4 left-1/2 transform -translate-x-1/2 group-hover:opacity-50">
-                {user.email}
+                {user?.email}
               </div>
             </div>
 
