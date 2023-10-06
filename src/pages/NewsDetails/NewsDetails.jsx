@@ -1,33 +1,16 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import Header from "../../components/shared/Header/Header";
-import { BsArrowLeft, BsCalendarEvent } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
 import Navbar from "../../components/shared/Navbar/Navbar";
 import LoginOptions from "../../components/shared/LoginOptions/LoginOptions";
 import FindUsOn from "../../components/shared/FindUsOn/FindUsOn";
 import QZone from "../../components/shared/QZone/QZone";
+import GetRandomNews from "../../utils/GetRandomNews/GetRandomNews";
 
 function NewsDetails() {
   const { id, category } = useParams();
   const allNews = useLoaderData();
   const news = allNews.find((singleNews) => singleNews._id === id);
-  const editorInsightNews = [];
-
-  const getRandomNews = () => {
-    const randomNewsNumber = [];
-    let length = 0;
-
-    while (length < 3) {
-      const randomNumber = Math.floor(Math.random() * allNews.length);
-      if (!randomNewsNumber.includes(randomNumber)) {
-        randomNewsNumber.push(randomNumber);
-        length++;
-      }
-    }
-    randomNewsNumber.forEach((number) =>
-      editorInsightNews.push(allNews[number])
-    );
-  };
-  getRandomNews();
 
   return (
     <div>
@@ -55,27 +38,11 @@ function NewsDetails() {
             <h3 className="text-xl font-semibold text-dark-2">
               Editors Insight
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-              {editorInsightNews?.map((singleNews) => (
-                <div key={singleNews._id} className="news flex flex-col">
-                  <img
-                    className="w-full h-40 rounded-md"
-                    src={singleNews.thumbnail_url}
-                    alt=""
-                  />
-                  <h2 className="text-lg font-semibold text-dark-2 mt-4 flex-grow">
-                    {singleNews?.title?.length > 40
-                      ? singleNews?.title?.slice(0, 40) + "..."
-                      : singleNews?.title}
-                  </h2>
-                  <div className="flex items-center mt-4 gap-4 text-[#9F9F9F]">
-                    <BsCalendarEvent />
-                    <p className="text-base font-medium">
-                      {formatDate(singleNews?.author?.published_date)}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div>
+              <GetRandomNews
+                allNews={allNews}
+                classes={"grid grid-cols-2 md:grid-cols-3 gap-6 mt-6"}
+              />
             </div>
           </div>
         </div>
@@ -87,15 +54,6 @@ function NewsDetails() {
       </div>
     </div>
   );
-}
-
-function formatDate(inputDate) {
-  const date = new Date(inputDate);
-  const month = date.toLocaleString("en-US", { month: "short" });
-  const day = date.getDate();
-  const year = date.getFullYear();
-
-  return `${month} ${day}, ${year}`;
 }
 
 export default NewsDetails;
