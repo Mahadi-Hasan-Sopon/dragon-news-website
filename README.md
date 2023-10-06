@@ -6,7 +6,6 @@ https://dragon-news-website-c911a.web.app
 
 https://dragon-news-website.surge.sh
 
-
 # News Aggregator App
 
 Welcome to the News Aggregator App! This is a web application that allows users to access and read news articles conveniently. It provides various features to enhance the user experience, including category-based news navigation, multiple login options, and easy access to full news articles. This README will guide you through the project and its features.
@@ -44,19 +43,21 @@ To get started with the News Aggregator App, follow these steps:
 
 1. Clone the repository:
 
-   ``` shell
-   git clone https://github.com/yourusername/news-aggregator.git
+   ```shell
+   git clone https://github.com/your-username/dragon-news-website.git
+   ```
 
 2. Install the necessary dependencies:
 
-   ``` shell
-   cd news-aggregator
+   ```shell
+   cd dragon-news-website
    yarn
+   ```
 
 3. Configure your API keys for Google and GitHub authentication.
    Refer to the provided `.env.example` file for details.
 
 4. Start the development server:
-   ``` shell
+   ```shell
    yarn dev
-
+   ```
