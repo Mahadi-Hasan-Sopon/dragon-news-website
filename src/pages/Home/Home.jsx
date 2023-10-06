@@ -10,6 +10,7 @@ import LoadingSpinner from "../../utils/LoadingSpinner/LoadingSpinner";
 import LoginOptions from "../../components/shared/LoginOptions/LoginOptions";
 import FindUsOn from "../../components/shared/FindUsOn/FindUsOn";
 import QZone from "../../components/shared/QZone/QZone";
+import GetRandomNews from "../../utils/GetRandomNews/GetRandomNews";
 import "./Home.css";
 
 function Home() {
@@ -94,10 +95,6 @@ function Home() {
       </div>
       <div className="homeBody grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 items-start mt-10">
         <div className="left-sidebar sticky top-28 overflow-y-auto max-h-[90vh] pr-4">
-          {/* <Categories
-            selectedCategoryId={selectedCategoryId}
-            handleCategoryChange={handleCategoryChange}
-          /> */}
           <h2 className="text-xl font-semibold text-dark-2">All Category</h2>
           <div className="categories-container flex flex-col gap-7 mt-5 list-none">
             {categories?.map((category) => (
@@ -108,6 +105,11 @@ function Home() {
                 handleCategoryChange={handleCategoryChange}
               />
             ))}
+          </div>
+          <div className="random-news">
+            {allNews?.length > 0 && (
+              <GetRandomNews allNews={allNews} classes={"my-12 space-y-8"} />
+            )}
           </div>
         </div>
         <div className="middle col-span-1 md:col-span-2 ">
