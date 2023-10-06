@@ -55,7 +55,7 @@ function Navbar() {
   const { user, logOutUser } = useContext(AuthContext);
 
   return (
-    <div className="py-6">
+    <div className="py-7">
       <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
@@ -85,7 +85,7 @@ function Navbar() {
         </div>
         <div className="navbar-end">
           <div className="flex items-center gap-2.5">
-            <div className="tooltip group mr-0.5">
+            <div className="tooltip group mr-0.5 z-50">
               {user?.photoURL ? (
                 <img
                   className="w-12 h-12 rounded-full cursor-pointer"
@@ -101,10 +101,11 @@ function Navbar() {
                   />
                 </>
               )}
-
-              <div className="tooltip-text absolute bg-black text-white p-2 rounded-md text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 -top-3/4 left-1/2 transform -translate-x-1/2 group-hover:opacity-50">
-                {user?.email}
-              </div>
+              {user?.email && (
+                <div className="tooltip-text absolute bg-black text-white py-2 px-4 rounded-md text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 -top-2/3 left-1/2 transform -translate-x-1/2 group-hover:opacity-50">
+                  {user?.email}
+                </div>
+              )}
             </div>
 
             {user ? (
